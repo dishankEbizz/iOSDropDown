@@ -20,14 +20,15 @@ class ViewController1: UIViewController {
         super.viewDidLoad()
         let option = Options()
         mainDropDown.optionArray = option.countries
-        mainDropDown.optionIds = option.ids
+//        mainDropDown.optionIds = option.ids
         mainDropDown.checkMarkEnabled = false
         mainDropDown.semanticContentAttribute = .forceRightToLeft
         mainDropDown.textColor = .red
         cstmbutn.isHidden = true
         customView.isHidden = true
-        mainDropDown.didSelect { selectedText, index, id in
+        mainDropDown.didSelect { selectedText, index, id,indexes  in
             self.valueLabel.text = "Selected String: \(selectedText) \n index: \(index) \n Id: \(id)"
+            print(indexes )
         }
 
         mainDropDown.arrowSize = 10
@@ -46,31 +47,31 @@ class ViewController1: UIViewController {
         customData[6].isSearchEnable = false
         // Custom Dropdown didSelect
 
-        customData[0].didSelect(completion: { selected, _, _ in
+        customData[0].didSelect(completion: { selected, _, _,_  in
             self.mainDropDown.isSearchEnable = Bool(selected)!
         })
 
-        customData[2].didSelect(completion: { selected, _, _ in
+        customData[2].didSelect(completion: { selected, _, _,_  in
             if #available(iOS 11.0, *) {
                 self.mainDropDown.selectedRowColor = UIColor(named: selected)!
             } else {
                 // Fallback on earlier versions
             }
         })
-        customData[3].didSelect(completion: { selected, _, _ in
+        customData[3].didSelect(completion: { selected, _, _,_  in
             if #available(iOS 11.0, *) {
                 self.mainDropDown.rowBackgroundColor = UIColor(named: selected)!
             } else {
                 // Fallback on earlier versions
             }
         })
-        customData[4].didSelect(completion: { selected, _, _ in
+        customData[4].didSelect(completion: { selected, _, _,_  in
             self.mainDropDown.listHeight = CGFloat(Float(selected)!)
         })
-        customData[5].didSelect(completion: { selected, _, _ in
+        customData[5].didSelect(completion: { selected, _, _,_  in
             self.mainDropDown.rowHeight = CGFloat(Float(selected)!)
         })
-        customData[6].didSelect(completion: { selected, _, _ in
+        customData[6].didSelect(completion: { selected, _, _,_  in
             self.mainDropDown.hideOptionsWhenSelect = Bool(selected)!
         })
 
